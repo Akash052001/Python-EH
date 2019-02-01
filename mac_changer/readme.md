@@ -1,6 +1,7 @@
 # mac address changer
-> **Introduction
- **What is MAC Address?** MAC Address or Media Access Control address is a 48 bit unique identifier for NIC Hardware present on devices (mobile, computer, network devices).
+>**Introduction**
+ 
+**What is MAC Address?** MAC Address or Media Access Control address is a 48 bit unique identifier for NIC Hardware present on devices (mobile, computer, network devices).
 
 In general world it acts as a unique identity for your devices on the network so that other devices will know with whom they are talking.
 
