@@ -13,5 +13,5 @@ _**Benifits of mac spoofing:**_
 >**tools documentations**
 * `subprocess:`https://docs.python.org/2/library/subprocess.html
 * `optparse:`https://docs.python.org/2/library/optparse.html
-* `re(regex):`ttps://docs.python.org/3/library/re.html
+* `re(regex):`https://docs.python.org/3/library/re.html
 
