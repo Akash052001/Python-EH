@@ -1,6 +1,15 @@
 # importing scapy
+# importing optparse
 
 import scapy.all as scapy
+import optparse as opt
+
+
+def get_arguments():
+    parser = opt.OptionParser()
+    parser.add_option("-t", "--target", dest="target", help="Target Ip range")
+    (options, arguments) = parser.parse_args()
+    return options
 
 
 def scan(ip):
@@ -15,13 +24,27 @@ def scan(ip):
 
     # sending the created packet (broadcasting the packet) using srp(send recieve packet
     # storing the returned list by srp in variables
-    answered_list, unanswered_list = scapy.srp(arp_single_packet, timeout=1, verbose=False)
-    # Extracting necessary data only in answered list
+    answered_list = scapy.srp(arp_single_packet, timeout=1, verbose=False)[0]
+    # Extracting necessary data only in answered list and storing in list of dictionary
+    scan_result = []
+
+    for element in answered_list:
+        scan_dict = {"ip": element[1].psrc, "mac": element[1].src}
+        scan_result.append(scan_dict)
+
+    return scan_result
+
+
+def result_print(scan_result):
     print("IP address's" + "\t\t" + "Mac address's")
     print("---------------------------------------------")
-    for element in answered_list:
-        print("|" + element[1].psrc + "\t\t" + element[1].src + "   |")
+    for each in scan_result:
+        print("|" + each["ip"] + "\t\t" + each["mac"] + "   |")
         print("|___________________________________________|")
 
 
-scan("172.20.8.1/24")
+# function call's
+
+option = get_arguments()
+result = scan(option.target)
+result_print(result)
